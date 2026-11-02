@@ -42,9 +42,7 @@ Run all three in order with `run_marg_pipeline.bat`.
 
 ## Setup
 
-```bash
 Requires Python 3.10+ with pandas, openpyxl, and msoffcrypto-tool.
-```
 
 Set the database and folder paths at the top of each script, then run
 `run_marg_pipeline.bat`. The import script prompts for the report password.
