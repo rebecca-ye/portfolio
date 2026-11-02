@@ -1,7 +1,7 @@
 # Product Margin Pipeline
 
 A three-stage pipeline that estimates material margin for each sale at a
-mid-sized electromechanical manufacturer by joining monthly factory cost
+mid-sized electromechanical manufacturer by matching monthly overseas factory cost
 reports to US sales records.
 
 ## The problem
@@ -25,11 +25,11 @@ Run all three in order with `run_marg_pipeline.bat`.
 
 - **Rerunnable imports.** Each report is fingerprinted with SHA-256, so the
   same file is never loaded twice, and every row records its source file.
-- **Strict-to-loose matching that refuses to guess.** SKUs are compared at
+- **Strict-to-loose matching without guessing.** SKUs are compared at
   increasing looseness (exact, description removed, parentheticals removed,
   embedded codes). The first level that matches decides; if it points to
   more than one product, the result is marked Ambiguous for review.
-- **Product-family guard.** Candidates whose core model code conflicts with
+- **Product family guard.** Candidates whose core model code conflicts with
   the sales SKU are rejected, even when a looser alias matches.
 - **Validated manual overrides.** Corrections live in a separate table;
   invalid or conflicting overrides stop the run.
@@ -63,9 +63,7 @@ No data is included. Cost reports and sales records are confidential.
 
 ## Next steps
 
-- Rank cost increases by dollar exposure (cost change x volume sold).
-- Relate factory cost changes to commodity prices such as copper, and
-  estimate the lag between commodity moves and factory cost changes.
+- Estimate loss size and lag between sensitive commodity moves and factory cost changes to determine potential hedging strategy.
 
 ## Author
 
